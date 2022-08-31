@@ -8,12 +8,20 @@ import { environment } from '../environments/environment';
 import { getMainBarcodeScanningCamera } from './camera-access';
 
 import { Observable } from 'rxjs';
-import { PokedexFirestoreService } from './pokedex-firestore.service';
+
 import { DocumentData } from '@angular/fire/firestore';
 import { enableDebugTools } from '@angular/platform-browser';
 import {MatTabsModule} from '@angular/material/tabs';
-// import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon'
 import {MatTableDataSource, MatTableModule} from '@angular/material/table'
+//  import {MatIconModule} from '@angular/material/icon';
+ import { MatSelectChange } from '@angular/material/select';
+import { EmpFilter } from './model/empfilter';
+// import { MatTableDataSource } from '@angular/material/table';
+import { BrowserAnimationsModule } from
+'@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-root',
@@ -38,12 +46,25 @@ export class AppComponent implements AfterViewInit {
 
 
 
+  EmpData : any[] =[{"id":1,"name":"Mellie","lastname":"Gabbott","email":"mgabbott0@indiatimes.com","gender":"Female","department":"Support","jobtitle":"Support Analyst"},
+  {"id":2,"name":"Yehudi","lastname":"Ainsby","email":"yainsby1@w3.org","gender":"Female","department":"Support","jobtitle":"Support Analyst"},
+  {"id":3,"name":"Noellyn","lastname":"Primett","email":"nprimett2@ning.com","gender":"Female","department":"Human Resources","jobtitle":"Project Manager"},
+  {"id":4,"name":"Stefanie","lastname":"Yurenin","email":"syurenin3@boston.com","gender":"Female","department":"Marketing","jobtitle":"Senior officer"},
+  {"id":5,"name":"Stormi","lastname":"O'Lunny","email":"solunny4@patch.com","gender":"Female","department":"Engineering","jobtitle":"Software Engineer"},
+  {"id":6,"name":"Keelia","lastname":"Giraudy","email":"kgiraudy5@nba.com","gender":"Male","department":"Marketing","jobtitle":"Senior officer"},
+  {"id":7,"name":"Ikey","lastname":"Laight","email":"ilaight6@wiley.com","gender":"Male","department":"Support","jobtitle":"Support Analyst"},
+  {"id":8,"name":"Adrianna","lastname":"Ruddom","email":"aruddom7@seattletimes.com","gender":"Male","department":"Marketing","jobtitle":"Senior officer"},
+  {"id":9,"name":"Dionysus","lastname":"McCory","email":"dmccory8@ox.ac.uk","gender":"Male","department":"Engineering","jobtitle":"Software Engineer"},
+  {"id":10,"name":"Claybourne","lastname":"Shellard","email":"cshellard9@rediff.com","gender":"Male","department":"Engineering","jobtitle":"Software Engineer"}];
+
 
   displayedColumns: string[] = ['name', 'ean', 'price'];
-  dataSource: any;
 
+  dataSource = new MatTableDataSource(this.catalogue2);
+  dataSourceFilters = new MatTableDataSource(this.catalogue2);
 
-  pokemon$: Observable<DocumentData>;
+  // dataSource = new MatTableDataSource(this.EmpData);
+  // dataSourceFilters = new MatTableDataSource(this.EmpData);
 
   private shoppingCart: ShoppingCart;
   private lastScannedCode: string | undefined;
@@ -52,15 +73,8 @@ export class AppComponent implements AfterViewInit {
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
               private updateService: UpdateService,
-              private pokedexService: PokedexFirestoreService
-
-              // public firestore: Firestore
             ) {
     this.shoppingCart = new ShoppingCart();
-
-    // const collection = collection(firestore, 'fsda');
-    // this.item$ = collectionData(collection);
-
   }
 
   ngAfterViewInit(): void {
@@ -74,36 +88,32 @@ export class AppComponent implements AfterViewInit {
     if (environment.production) {
       setTimeout(() => {
         this.updateService.checkForUpdates();
-      }, 10000);
+      }, 3000);
     }
-    this.logheaza();
-    this.getDocs();
+
+    // this.getDocs();
     this.getDocsForTable();
-    this.pokemon$ = this.pokedexService.getAll();
+     console.log(this.dataSource, this.dataSourceFilters)
   }
+  applyFilter(event: Event) {
+    console.log(event)
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue)
+    return this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
 
-  public getDocs() {
-    this.beepService
-      .getDocs()
-      .subscribe((data) => {
-        this.catalogue2 = data;
-        console.log('mongo Crabs=>', this.catalogue2);
-      });
-  }
+
   public getDocsForTable() {
     this.beepService
       .getDocs()
       .subscribe((data) => {
-        this.dataSource = data;
+         this.dataSource = new MatTableDataSource(data);
+        this.catalogue2 = data;
         console.log('table docs=>', this.dataSource);
       });
   }
 
-  logheaza(){
-    console.log("WORKS")
-    console.log(this.pokemon$)
-  }
 
   private initializeScanner(): Promise<void> {
     if (!navigator.mediaDevices || !(typeof navigator.mediaDevices.getUserMedia === 'function')) {
