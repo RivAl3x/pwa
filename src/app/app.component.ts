@@ -83,6 +83,7 @@ export class AppComponent implements AfterViewInit {
       return;
     }
 
+
     this.initializeScanner();
 
     if (environment.production) {
