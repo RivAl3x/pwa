@@ -20,12 +20,17 @@ import {MatTableModule} from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { DetaliiComponent } from './detalii/detalii.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingCartItemComponent,
     AfisareProduseComponent,
+    DetaliiComponent,
+
 
   ],
   imports: [
@@ -38,6 +43,7 @@ import {MatButtonModule} from '@angular/material/button';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatButtonModule,
 
 
 

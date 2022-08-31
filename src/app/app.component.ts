@@ -22,7 +22,6 @@ import { BrowserAnimationsModule } from
 '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -73,6 +72,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
               private updateService: UpdateService,
+
             ) {
     this.shoppingCart = new ShoppingCart();
   }
@@ -192,16 +192,15 @@ export class AppComponent implements AfterViewInit {
   }
 
   onBarcodeScanned(code: string) {
-
+    console.log("code:", code);
     // ignore duplicates for an interval of 1.5 seconds
     const now = new Date().getTime();
-    if (code === this.lastScannedCode
-      && ((this.lastScannedCodeDate !== undefined) && (now < this.lastScannedCodeDate + 3500))) {
+    if (code === this.lastScannedCode && ((this.lastScannedCodeDate !== undefined) && (now < this.lastScannedCodeDate + 2500))) {
       return;
     }
 
     // only accept articles from catalogue
-    let article = this.catalogue.find((item) => item.ean === code);
+    let article = this.catalogue2.find((item) => item.ean === code);
     // alert(code)
     if (!article) {
       if (this.acceptAnyCode) {

@@ -5,12 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AfisareProduseComponent } from './afisare-produse/afisare-produse.component';
 import { ShoppingCart } from './shopping-cart';
+import { DetaliiComponent } from './detalii/detalii.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'AppComponent', pathMatch: 'full' },
   { path: 'produse', component: AfisareProduseComponent },
-  { path: 'cart', component: ShoppingCart }
+  { path: 'cart', component: ShoppingCart },
+  { path: 'detalii', component: DetaliiComponent }
 ];
 
 
