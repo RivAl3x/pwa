@@ -50,4 +50,41 @@
 
 table {
   width: 100%;
+  z-index: 5;
+}
+
+mat-tab-label{
+  min-width: 0%
+}
+
+
+// @media screen and (max-width: 1025px) {
+//   /* Here are some changes*/
+// }
+
+// /* Mobile device styles */
+// @media screen and (max-width: 599px) {
+//       /* Here are some changes*/
+// }
+// mat-tab-label{
+//   min-width: 0%
+// }
+
+// @media (max-width: 599px)
+
+// .mat-tab-label {
+//     /* min-width: 72px; */
+// }
+.mat-tab-group{
+  background-color: rgb(86, 104, 100);
+}
+mat-card{
+  background-color: rgb(88, 99, 96);
+}
+
+.mat-tab-label .mat-tab-label-content{
+  color:red !important
+}
+.mat-cell{
+  font-size: 12px;
 }

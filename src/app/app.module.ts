@@ -16,11 +16,10 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
-
 import {MatTableModule} from '@angular/material/table'
-
 import { MaterialComponentsModule } from './material-components/material-components.module';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +37,8 @@ import { MaterialComponentsModule } from './material-components/material-compone
     MatTableModule,
     MaterialComponentsModule,
     BrowserAnimationsModule,
+    MatIconModule,
+
 
 
 
