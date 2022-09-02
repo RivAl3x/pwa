@@ -20,12 +20,20 @@ import {MatTableModule} from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetaliiComponent } from './detalii/detalii.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingCartItemComponent,
     AfisareProduseComponent,
+    DialogComponent,
+    DetaliiComponent,
+
 
   ],
   imports: [
@@ -38,6 +46,9 @@ import {MatButtonModule} from '@angular/material/button';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatDialogModule,
+
+    ReactiveFormsModule,
 
 
 

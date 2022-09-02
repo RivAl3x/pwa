@@ -21,6 +21,10 @@ import { EmpFilter } from './model/empfilter';
 import { BrowserAnimationsModule } from
 '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @Component({
@@ -69,10 +73,11 @@ export class AppComponent implements AfterViewInit {
   private shoppingCart: ShoppingCart;
   private lastScannedCode: string | undefined;
   private lastScannedCodeDate: number  | undefined;
-
+  name = 'World';
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
               private updateService: UpdateService,
+              public dialog: MatDialog
             ) {
     this.shoppingCart = new ShoppingCart();
   }
@@ -96,6 +101,17 @@ export class AppComponent implements AfterViewInit {
     this.getDocsForTable();
      console.log(this.dataSource, this.dataSourceFilters)
   }
+
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width: '300px',
+      data: { callback: this.callBack.bind(this), defaultValue: this.name }
+    });
+  }
+  callBack(name: string) {
+    this.name = name;
+  }
+
   applyFilter(event: Event) {
     console.log(event)
     const filterValue = (event.target as HTMLInputElement).value;
