@@ -16,13 +16,11 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./detalii.component.scss']
 })
 export class DetaliiComponent implements OnInit {
-  produs: Article = {} as Article;
+  // produs: Article = {} as Article;
   produsId: any = '';
 
   listingForm: FormGroup;
   listing: Article = {} as Article;
-
-
 
 
   constructor(public beepService: BeepService,
@@ -33,27 +31,41 @@ export class DetaliiComponent implements OnInit {
     // this.produsId = this.route.snapshot.paramMap.get('_id');
     this.produsId = this.route.params.subscribe(params => {
       this.getDocById(params['_id']);
-      console.log(this.produsId)
     });
     //initiaza form
-    this.initForm(this.listing);
+    this.initForm({
+      name: '',
+      ean: '',
+      price: 0
+    });
+    console.log(this.listing)
   }
+
+
 
   getDocById(id: any): void {
-
     this.beepService.getDocById(id)
-      .subscribe(res => this.produs = res);
+      .subscribe(response => this.listing = response);
+      console.log(this.listing)
 
+      setTimeout(() => {
+        console.log("Delayed for 1 second.");
+        this.initForm(this.listing);
+      }, 200)
+
+
+      console.log(this.listing)
   }
+
+
+
   private initForm(listing: Article) {
     console.info('listing: ListingModel -- ', listing);
-
     // let id = listing._id ? listing._id : null;
     let name = listing.name ? listing.name : null;
     let ean = listing.ean ? listing.ean : null;
     let price = listing.price ? listing.price : null;
     // let image = listing.image ? listing.image : null;
-
     this.listingForm = new FormGroup({
       // id: new FormControl(id),
       name: new FormControl(name),
@@ -71,7 +83,7 @@ export class DetaliiComponent implements OnInit {
     console.log(this.listing, "this.listing")
 
     await this.beepService.saveListing(this.listing).
-      subscribe(res => this.produs = res);
+      subscribe(res => this.listing = res);
     this.beepService.getDocs();
   }
 

@@ -46,11 +46,11 @@ export class BeepService {
   getDocById(id:any){
     // const url = environment.mongoUrl;
     const url = environment.mongoUrlLocal+"business"+"/edit/"+id;
-    console.log(url)
+
     return this.http.get<any>(url)
       .pipe(
         map((response: any) => {
-          console.warn("Mongo DB:", response)
+          console.warn("Mongo DB by ID:", response)
           return response;
         }),
 
