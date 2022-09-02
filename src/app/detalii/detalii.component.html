@@ -1,7 +1,31 @@
-<p>detalii works!</p>
 <ul>
-  <li >
-  {{produs.price}}
-</li>
-
+  <li>
+    {{ produs.price }}
+  </li>
 </ul>
+
+<form [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Nume</mat-label>
+
+    <input matInput formControlName="name" placeholder="Nume" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Ean</mat-label>
+
+    <input matInput formControlName="ean" placeholder="Ean" />
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Preț</mat-label>
+
+    <input matInput formControlName="price" placeholder="Preț" />
+  </mat-form-field>
+
+  <button type="submit">Salvează</button>
+</form>
+
+<!-- <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Favorite food</mat-label>
+  <input matInput placeholder="Ex. Pizza" value="Sushi">
+</mat-form-field> -->

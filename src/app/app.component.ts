@@ -40,12 +40,12 @@ export class AppComponent implements AfterViewInit {
   items: [Article, number][] = [];
   totalPrice: number = 0;
 
-  private catalogue: Article[] = [
-    { name: 'Classy Crab (red)', ean: '7601234567890', image: 'assets/classy_crab_red.png', price: 10 },
-    { name: 'Classy Crab (blue)', ean: '7601234561232', image: 'assets/classy_crab_blue.png', price: 10 },
-    { name: 'Classy Crab (gold, ltd. ed.)', ean: '7601234564561', image: 'assets/classy_crab_gold.png', price: 50 },
-    { name: 'Cafea', ean: '8000070038028', image: 'https://www.lavazza.ro/ro/cafea/macinata/qualita-rossa.html', price: 50 }
-  ];
+  // private catalogue: Article[] = [
+  //   { name: 'Classy Crab (red)', ean: '7601234567890', image: 'assets/classy_crab_red.png', price: 10 },
+  //   { name: 'Classy Crab (blue)', ean: '7601234561232', image: 'assets/classy_crab_blue.png', price: 10 },
+  //   { name: 'Classy Crab (gold, ltd. ed.)', ean: '7601234564561', image: 'assets/classy_crab_gold.png', price: 50 },
+  //   { name: 'Cafea', ean: '8000070038028', image: 'https://www.lavazza.ro/ro/cafea/macinata/qualita-rossa.html', price: 50 }
+  // ];
   public catalogue2: Article[] = [];
 
 
@@ -217,7 +217,7 @@ export class AppComponent implements AfterViewInit {
     }
 
     // only accept articles from catalogue
-    let article = this.catalogue.find((item) => item.ean === code);
+    let article = this.catalogue2.find((item) => item.ean === code);
     // alert(code)
     if (!article) {
       if (this.acceptAnyCode) {
@@ -266,7 +266,7 @@ export class AppComponent implements AfterViewInit {
     return {
       ean: code,
       name: `Codul: ${code}`,
-      image: 'assets/classy_crab_unknown.png',
+      // image: 'assets/classy_crab_unknown.png',
       price:0
     }
   }

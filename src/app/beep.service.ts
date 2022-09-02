@@ -60,6 +60,36 @@ export class BeepService {
         })
       );
   }
+
+
+  saveListing(listing:any) {
+
+
+      const url = environment.mongoUrlLocal + 'business'+ '/add';
+      console.log(url, "URL", "listing:", listing)
+      return this.http.post('http://localhost:4000/business/add', listing)
+      .pipe(
+
+        map((res: any) => {
+          console.log(listing)
+          return res;
+        })
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
