@@ -30,7 +30,10 @@ export class DetaliiComponent implements OnInit {
   ngOnInit(): void {
     // this.produsId = this.route.snapshot.paramMap.get('_id');
     this.produsId = this.route.params.subscribe(params => {
-      this.getDocById(params['_id']);
+      if(params['_id']){
+        this.getDocById(params['_id']);
+      }
+
     });
     //initiaza form
     this.initForm({
@@ -51,7 +54,7 @@ export class DetaliiComponent implements OnInit {
       setTimeout(() => {
         console.log("Delayed for 1 second.");
         this.initForm(this.listing);
-      }, 200)
+      }, 300)
 
 
       console.log(this.listing)

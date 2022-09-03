@@ -21,15 +21,8 @@
   </form>
 </div>
 <div class="shopping-cart">
-  <ng-template #shoppingCartItems>
-    <app-shopping-cart-item *ngFor="let articleAndCount of items" [article]="articleAndCount[0]"
-      [count]="articleAndCount[1]">
-    </app-shopping-cart-item>
-    <div class="shopping-cart-total">
-      Total: {{ totalPrice }} Lei
-    </div>
-  </ng-template>
-  <span *ngIf="items.length === 0 else shoppingCartItems">Lista e goală</span>
+
+  <mat-card><router-outlet></router-outlet></mat-card>
 
 
 
@@ -44,6 +37,7 @@ MAT TAB GROUP -->
           <mat-icon class="example-tab-icon">qr_code</mat-icon>
           Scanări
         </ng-template>
+        <span *ngIf="items.length === 0 else shoppingCartItems">Lista e goală</span>
         <ng-template #shoppingCartItems>
           <app-shopping-cart-item *ngFor="let articleAndCount of items" [article]="articleAndCount[0]"
             [count]="articleAndCount[1]">
@@ -84,7 +78,7 @@ MAT TAB GROUP -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-card><router-outlet></router-outlet></mat-card>
+
       </mat-card>
     </mat-tab>
   </mat-tab-group>

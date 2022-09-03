@@ -4,7 +4,7 @@
   </li>
 </ul>
 
-<form [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)">
+<form *ngIf="listingForm.valid" [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nume</mat-label>
 
