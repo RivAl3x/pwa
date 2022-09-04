@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { BeepService } from './beep.service';
 import Quagga from '@ericblade/quagga2';
 import { Article } from './article';
@@ -27,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './dialog/dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginator} from '@angular/material/paginator';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -48,7 +48,7 @@ export class AppComponent implements AfterViewInit {
   //   { name: 'Cafea', ean: '8000070038028', image: 'https://www.lavazza.ro/ro/cafea/macinata/qualita-rossa.html', price: 50 }
   // ];
   public catalogue2: Article[] = [];
-
+  pageSizeOptions  =[5, 10, 25, 100];
 
 
   EmpData : any[] =[{"id":1,"name":"Mellie","lastname":"Gabbott","email":"mgabbott0@indiatimes.com","gender":"Female","department":"Support","jobtitle":"Support Analyst"},
@@ -66,7 +66,9 @@ export class AppComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'ean', 'price'];
 
   dataSource = new MatTableDataSource(this.catalogue2);
-  dataSourceFilters = new MatTableDataSource(this.catalogue2);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  // dataSourceFilters = new MatTableDataSource(this.catalogue2);
 
   // dataSource = new MatTableDataSource(this.EmpData);
   // dataSourceFilters = new MatTableDataSource(this.EmpData);
@@ -100,8 +102,14 @@ export class AppComponent implements AfterViewInit {
 
     // this.getDocs();
     this.getDocsForTable();
-     console.log(this.dataSource, this.dataSourceFilters)
+    //  console.log(this.dataSourceFilters)
+
+//paginatie
+this.dataSource = new MatTableDataSource(this.catalogue2);
+     this.dataSource.paginator = this.paginator;
+     console.log(this.paginator)
   }
+
 
   openDialog() {
     this.dialog.open(DialogComponent, {
@@ -117,7 +125,13 @@ export class AppComponent implements AfterViewInit {
     console.log(event)
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue)
-    return this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
 }
 
 
