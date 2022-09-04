@@ -1,31 +1,32 @@
-<ul>
+<!-- <ul>
   <li>
     {{ listing.price }}
   </li>
-</ul>
+</ul> -->
 
-<form *ngIf="listingForm.valid" [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)">
+<form  *ngIf="listing" [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nume</mat-label>
 
-    <input matInput formControlName="name" placeholder="Nume" />
+    <input matInput formControlName="name" placeholder="Nume" value = {{listing.name}} />
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ean</mat-label>
 
-    <input matInput formControlName="ean" placeholder="Ean" />
+    <input matInput formControlName="ean" placeholder="Ean" value = {{listing.ean}}/>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Preț</mat-label>
 
-    <input matInput formControlName="price" placeholder="Preț" />
+    <input matInput formControlName="price" placeholder="Preț" value = {{listing.price}}/>
   </mat-form-field>
 
-  <button type="submit">Salvează</button>
+  <button mat-button type="submit" color="warn">	<mat-icon>save</mat-icon> Salvează </button>
 </form>
 
 <!-- <mat-form-field class="example-full-width" appearance="fill">
   <mat-label>Favorite food</mat-label>
   <input matInput placeholder="Ex. Pizza" value="Sushi">
 </mat-form-field> -->
+

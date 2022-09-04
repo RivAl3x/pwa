@@ -25,7 +25,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './dialog/dialog.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-root',
@@ -221,6 +222,7 @@ export class AppComponent implements AfterViewInit {
     // alert(code)
     if (!article) {
       if (this.acceptAnyCode) {
+        console.log("CHECKBOX")
         article = this.createUnknownArticle(code);
       } else {
         return;

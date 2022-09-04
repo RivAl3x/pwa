@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   HttpClient,
@@ -43,7 +43,7 @@ export class BeepService {
   }
 
 
-  getDocById(id:any){
+  getDocById(id:any):Observable<any>{
     // const url = environment.mongoUrl;
     const url = environment.mongoUrlLocal+"business"+"/edit/"+id;
 

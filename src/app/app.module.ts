@@ -19,12 +19,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetaliiComponent } from './detalii/detalii.component';
+import { MatButton } from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { DetaliiComponent } from './detalii/detalii.component';
     AfisareProduseComponent,
     DialogComponent,
     DetaliiComponent,
+
 
 
   ],
@@ -47,8 +51,9 @@ import { DetaliiComponent } from './detalii/detalii.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatDialogModule,
-
+    MatButtonModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
 
 
 
