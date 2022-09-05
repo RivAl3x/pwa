@@ -21,6 +21,7 @@ export class DetaliiComponent implements OnInit {
 
   listingForm: FormGroup;
   listing: Article = {} as Article;
+  eanCodeSes: any;
 
 
   constructor(public beepService: BeepService,
@@ -33,16 +34,18 @@ export class DetaliiComponent implements OnInit {
       if (params['_id']) {
         this.getDocById(params['_id']);
       }
-
+      this.eanCodeSes = localStorage.getItem('eanCode');
+      console.log("EAN CODE from SESSION:", this.eanCodeSes)
     });
-    //initiaza form
-    // this.initForm({
-    //   name: '',
-    //   ean: '',
-    //   price: 0
-    // });
+    // initiaza form
+    this.initForm({
+      name: '',
+      ean: this.eanCodeSes,
+      price: 0
+    });
 
     console.log(this.listing)
+
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Article } from '../article';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart-item',
@@ -8,7 +10,9 @@ import { Article } from '../article';
 })
 export class ShoppingCartItemComponent implements OnInit {
 
-  constructor() {
+  displayedColumns: string[] = ['name', 'ean', 'price'];
+  constructor( private router: Router,
+    private route: ActivatedRoute) {
   }
 
   @Input()
@@ -19,5 +23,11 @@ export class ShoppingCartItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  createBook(eanCode: any){
+    // Create Book logic
+    this.router.navigate(['/detalii']);
+    console.log(eanCode)
+    localStorage.setItem('eanCode', eanCode);
 
+ }
 }

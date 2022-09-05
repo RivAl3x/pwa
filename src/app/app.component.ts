@@ -274,14 +274,15 @@ this.dataSource = new MatTableDataSource(this.catalogue2);
 
     if(eanCheckDigit(code) == 8){
 
-      alert( eanCheckDigit(code) )
+      // alert( eanCheckDigit(code) )
     }else {
-      alert(eanCheckDigit(code))
+      // alert(eanCheckDigit(code))
     }
 
     return {
       ean: code,
-      name: `Codul: ${code}`,
+      // name: `Codul: ${code}`,
+      name: "Produs nou",
       // image: 'assets/classy_crab_unknown.png',
       price:0
     }

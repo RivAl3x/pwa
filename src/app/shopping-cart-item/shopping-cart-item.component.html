@@ -1,8 +1,12 @@
 <div *ngIf="article !== undefined" class="shopping-cart-item">
-
   <!-- <img class="article-image"  [alt]="article.name"> -->
 
-  <div class="article-name">{{ article.name }}</div>
+  <div class="article-name">
+    {{ article.name }} {{ article.ean }} {{ article.price }}
+    <button (click)="createBook(article.ean)">Create Book</button>
+  </div>
 
   <div class="article-count">{{ count }}</div>
+
+
 </div>
