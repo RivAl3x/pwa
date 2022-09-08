@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { BeepService } from './beep.service';
 import Quagga from '@ericblade/quagga2';
 import { Article } from './article';
@@ -22,6 +22,14 @@ import { BrowserAnimationsModule } from
 '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './dialog/dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -35,14 +43,14 @@ export class AppComponent implements AfterViewInit {
   items: [Article, number][] = [];
   totalPrice: number = 0;
 
-  private catalogue: Article[] = [
-    { name: 'Classy Crab (red)', ean: '7601234567890', image: 'assets/classy_crab_red.png', price: 10 },
-    { name: 'Classy Crab (blue)', ean: '7601234561232', image: 'assets/classy_crab_blue.png', price: 10 },
-    { name: 'Classy Crab (gold, ltd. ed.)', ean: '7601234564561', image: 'assets/classy_crab_gold.png', price: 50 },
-    { name: 'Cafea', ean: '8000070038028', image: 'https://www.lavazza.ro/ro/cafea/macinata/qualita-rossa.html', price: 50 }
-  ];
+  // private catalogue: Article[] = [
+  //   { name: 'Classy Crab (red)', ean: '7601234567890', image: 'assets/classy_crab_red.png', price: 10 },
+  //   { name: 'Classy Crab (blue)', ean: '7601234561232', image: 'assets/classy_crab_blue.png', price: 10 },
+  //   { name: 'Classy Crab (gold, ltd. ed.)', ean: '7601234564561', image: 'assets/classy_crab_gold.png', price: 50 },
+  //   { name: 'Cafea', ean: '8000070038028', image: 'https://www.lavazza.ro/ro/cafea/macinata/qualita-rossa.html', price: 50 }
+  // ];
   public catalogue2: Article[] = [];
-
+  pageSizeOptions  =[5, 10, 25, 100];
 
 
   EmpData : any[] =[{"id":1,"name":"Mellie","lastname":"Gabbott","email":"mgabbott0@indiatimes.com","gender":"Female","department":"Support","jobtitle":"Support Analyst"},
@@ -60,7 +68,9 @@ export class AppComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'ean', 'price'];
 
   dataSource = new MatTableDataSource(this.catalogue2);
-  dataSourceFilters = new MatTableDataSource(this.catalogue2);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  // dataSourceFilters = new MatTableDataSource(this.catalogue2);
 
   // dataSource = new MatTableDataSource(this.EmpData);
   // dataSourceFilters = new MatTableDataSource(this.EmpData);
@@ -68,10 +78,12 @@ export class AppComponent implements AfterViewInit {
   private shoppingCart: ShoppingCart;
   private lastScannedCode: string | undefined;
   private lastScannedCodeDate: number  | undefined;
-
+  name = 'World';
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
               private updateService: UpdateService,
+
+              public dialog: MatDialog
 
             ) {
     this.shoppingCart = new ShoppingCart();
@@ -94,13 +106,36 @@ export class AppComponent implements AfterViewInit {
 
     // this.getDocs();
     this.getDocsForTable();
-     console.log(this.dataSource, this.dataSourceFilters)
+    //  console.log(this.dataSourceFilters)
+
+//paginatie
+this.dataSource = new MatTableDataSource(this.catalogue2);
+     this.dataSource.paginator = this.paginator;
+     console.log(this.paginator)
   }
+
+
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width: '300px',
+      data: { callback: this.callBack.bind(this), defaultValue: this.name }
+    });
+  }
+  callBack(name: string) {
+    this.name = name;
+  }
+
   applyFilter(event: Event) {
     console.log(event)
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue)
-    return this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
 }
 
 
@@ -204,6 +239,7 @@ export class AppComponent implements AfterViewInit {
     // alert(code)
     if (!article) {
       if (this.acceptAnyCode) {
+        console.log("CHECKBOX")
         article = this.createUnknownArticle(code);
       } else {
         return;
@@ -241,15 +277,16 @@ export class AppComponent implements AfterViewInit {
 
     if(eanCheckDigit(code) == 8){
 
-      alert( eanCheckDigit(code) )
+      // alert( eanCheckDigit(code) )
     }else {
-      alert(eanCheckDigit(code))
+      // alert(eanCheckDigit(code))
     }
 
     return {
       ean: code,
-      name: `Codul: ${code}`,
-      image: 'assets/classy_crab_unknown.png',
+      // name: `Codul: ${code}`,
+      name: "Produs nou",
+      // image: 'assets/classy_crab_unknown.png',
       price:0
     }
   }

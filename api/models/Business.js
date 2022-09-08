@@ -11,11 +11,9 @@ let Business = new Schema({
   ean: {
     type: String
   },
-  image: {
-    type: String
-  },
+
   price: {
-    type: Number
+    type: String
   }
 },{
     collection: 'pwa'

@@ -19,17 +19,35 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import {MatIconModule} from '@angular/material/icon';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+
 import {MatButtonModule} from '@angular/material/button';
 import { DetaliiComponent } from './detalii/detalii.component';
 
 
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetaliiComponent } from './detalii/detalii.component';
+import { MatButton } from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingCartItemComponent,
     AfisareProduseComponent,
+
+    DialogComponent,
     DetaliiComponent,
+
+
+
+    DetaliiComponent,
+
 
 
   ],
@@ -43,7 +61,15 @@ import { DetaliiComponent } from './detalii/detalii.component';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     MatIconModule,
+
+    MatDialogModule,
     MatButtonModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+
+    MatButtonModule,
+
 
 
 

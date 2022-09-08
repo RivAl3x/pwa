@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   HttpClient,
@@ -41,6 +41,55 @@ export class BeepService {
         })
       );
   }
+
+
+  getDocById(id:any):Observable<any>{
+    // const url = environment.mongoUrl;
+    const url = environment.mongoUrlLocal+"business"+"/edit/"+id;
+
+    return this.http.get<any>(url)
+      .pipe(
+        map((response: any) => {
+          console.warn("Mongo DB by ID:", response)
+          return response;
+        }),
+
+
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      );
+  }
+
+
+  saveListing(listing:any) {
+
+
+      const url = environment.mongoUrlLocal + 'business'+ '/add';
+      console.log(url, "URL", "listing:", listing)
+      return this.http.post('http://localhost:4000/business/add', listing)
+      .pipe(
+
+        map((res: any) => {
+          console.log(listing)
+          return res;
+        })
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
