@@ -12,8 +12,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'AppComponent', pathMatch: 'full' },
   { path: 'produse', component: AfisareProduseComponent },
   { path: 'cart', component: ShoppingCart },
+
   { path: 'detalii', component: DetaliiComponent },
-  { path: 'detalii/:_id', component: DetaliiComponent }
+  { path: 'detalii/:_id', component: DetaliiComponent },
+
+  { path: 'detalii', component: DetaliiComponent }
+
 ];
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { BeepService } from '../beep.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,12 +11,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
+
 @Component({
   selector: 'app-detalii',
   templateUrl: './detalii.component.html',
   styleUrls: ['./detalii.component.scss']
 })
 export class DetaliiComponent implements OnInit {
+
   // produs: Article = {} as Article;
   produsId: any;
 
@@ -98,6 +103,14 @@ export class DetaliiComponent implements OnInit {
     this.beepService.saveListing(this.listing).
       subscribe(res => this.listing = res);
     this.beepService.getDocs();
+  }
+
+
+
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
 

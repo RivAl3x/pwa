@@ -19,8 +19,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import {MatIconModule} from '@angular/material/icon';
+
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+
+import {MatButtonModule} from '@angular/material/button';
+import { DetaliiComponent } from './detalii/detalii.component';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetaliiComponent } from './detalii/detalii.component';
@@ -35,7 +40,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppComponent,
     ShoppingCartItemComponent,
     AfisareProduseComponent,
+
     DialogComponent,
+    DetaliiComponent,
+
+
+
     DetaliiComponent,
 
 
@@ -51,11 +61,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MaterialComponentsModule,
     BrowserAnimationsModule,
     MatIconModule,
+
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     MatFormFieldModule,
+
+    MatButtonModule,
+
 
 
 
