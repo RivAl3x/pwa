@@ -37,16 +37,19 @@ export class DetaliiComponent implements OnInit {
         this.getDocById(params['_id']);
       }
       this.eanCodeSes = localStorage.getItem('eanCode');
+      var paramsId = params['_id'];
+      localStorage.setItem('paramsId', paramsId)
+
       console.log("EAN CODE from SESSION:", this.eanCodeSes)
     });
     // initiaza form
-    this.initForm({
-      name: '',
-      ean: this.eanCodeSes,
-      price: 0
-    });
+    // this.initForm({
+    //   name: '',
+    //   ean: this.eanCodeSes,
+    //   price: 0
+    // });
 
-    console.log(this.listing)
+    // console.log(this.listing)
 
   }
 
@@ -58,11 +61,19 @@ export class DetaliiComponent implements OnInit {
   async getDocById(id: any): Promise<void> {
     this.beepService.getDocById(id)
       .subscribe(response => this.listing = response);
-    console.log(this.listing)
+      this.listingForm = new FormGroup({
+
+        name: new FormControl(),
+        ean: new FormControl(),
+        price: new FormControl(),
+
+      });
+
+    // console.log(this.listing)
 
     // setTimeout(() => {
     //   console.log("Delayed for 1 second.");
-    this.initForm(this.listing);
+    // ===this.initForm(this.listing);
     // }, 300)
 
 
@@ -74,29 +85,31 @@ export class DetaliiComponent implements OnInit {
   }
 
 
-  private initForm(listing: Article) {
-    console.info('listing: ListingModel -- ', listing);
-    let _id = listing._id ? listing._id : null;
-    let name = listing.name ? listing.name : null;
-    let ean = listing.ean ? listing.ean : null;
-    let price = listing.price ? listing.price : null;
-    // let image = listing.image ? listing.image : null;
-    this.listingForm = new FormGroup({
-      id: new FormControl(_id),
-      name: new FormControl(name),
-      ean: new FormControl(ean),
-      price: new FormControl(price),
-      // image: new FormControl(image)
-    });
+  // private initForm(listing: Article) {
+  //   console.info('listing: ListingModel -- ', listing);
+  //   // let _id = listing._id ? listing._id : null;
+  //   let name = listing.name ? listing.name : null;
+  //   let ean = listing.ean ? listing.ean : null;
+  //   let price = listing.price ? listing.price : undefined;
+  //   // let image = listing.image ? listing.image : null;
+  //   this.listingForm = new FormGroup({
+  //     // _id: new FormControl(_id),
+  //     name: new FormControl(name),
+  //     ean: new FormControl(ean),
+  //     price: new FormControl(price),
+  //     // image: new FormControl(image)
+  //   });
 
-  }
+  // }
+
+
 
   beforeonSaveListing(listingForm: any, tip: any) {
-    console.log(this.produsId)
+    // console.log(this.produsId)
     if (tip == 1) {
       this.onSaveListing(listingForm)
-    } else {
-      this.onUpdateListing(listingForm, this.produsId)
+    } else if(tip==2) {
+      this.onUpdateListing(listingForm)
     }
   }
 
@@ -106,8 +119,22 @@ export class DetaliiComponent implements OnInit {
     // console.log(this.listing, "this.listing")
 
     this.beepService.saveListing(this.listing).
-      subscribe(res => this.listing = res);
+      subscribe((res) => {
+        this.listing._id = res._id
+        console.log("res._id",res._id)
+      });
+      console.log("this.listing._id",this.listing._id)
     this.beepService.getDocs();
+  }
+
+  async onUpdateListing(listingForm:any){
+    this.listing = this.listingForm.value;
+    this.beepService.updateListing( this.listing).
+    subscribe(res => this.listing = res);
+
+    console.log("this.listing onUpdateListing",this.listing)
+    this.beepService.getDocById(localStorage.getItem('paramsId')).
+    subscribe(res => this.listing = res);;
   }
 
 

@@ -3,7 +3,7 @@
 
   <div class="article-name">
     {{ article.name }} {{ article.ean }} {{ article.price }}
-    <button (click)="createBook(article.ean)">Create Book</button>
+    <button (click)="sendEanToSession(article.ean)">Crează produs</button>
   </div>
 
   <div class="article-count">{{ count }}</div>

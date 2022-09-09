@@ -146,7 +146,7 @@ this.dataSource = new MatTableDataSource(this.catalogue2);
       .subscribe((data) => {
          this.dataSource = new MatTableDataSource(data);
         this.catalogue2 = data;
-        console.log('table docs=>', this.dataSource);
+
       });
   }
 
