@@ -11,9 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
-
-
 @Component({
   selector: 'app-detalii',
   templateUrl: './detalii.component.html',
@@ -79,13 +76,13 @@ export class DetaliiComponent implements OnInit {
 
   private initForm(listing: Article) {
     console.info('listing: ListingModel -- ', listing);
-    // let id = listing._id ? listing._id : null;
+    let _id = listing._id ? listing._id : null;
     let name = listing.name ? listing.name : null;
     let ean = listing.ean ? listing.ean : null;
     let price = listing.price ? listing.price : null;
     // let image = listing.image ? listing.image : null;
     this.listingForm = new FormGroup({
-      // id: new FormControl(id),
+      id: new FormControl(_id),
       name: new FormControl(name),
       ean: new FormControl(ean),
       price: new FormControl(price),
@@ -94,23 +91,23 @@ export class DetaliiComponent implements OnInit {
 
   }
 
+  beforeonSaveListing(listingForm: any, tip: any) {
+    console.log(this.produsId)
+    if (tip == 1) {
+      this.onSaveListing(listingForm)
+    } else {
+      this.onUpdateListing(listingForm, this.produsId)
+    }
+  }
 
   async onSaveListing(listingForm: any) {
-    console.log(listingForm, "triims pentru salvare")
+    // console.log(listingForm, "triims pentru salvare")
     this.listing = this.listingForm.value;
-    console.log(this.listing, "this.listing")
+    // console.log(this.listing, "this.listing")
 
     this.beepService.saveListing(this.listing).
       subscribe(res => this.listing = res);
     this.beepService.getDocs();
-  }
-
-
-
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
 
