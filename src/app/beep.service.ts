@@ -25,7 +25,7 @@ export class BeepService {
     audio.play();
   }
 
-  getDocs(){
+  getDocs():Observable<any>{
     // const url = environment.mongoUrl;
     const url = environment.mongoUrlLocal+"business";
     // console.log(url)
@@ -63,7 +63,7 @@ export class BeepService {
   }
 
 
-  saveListing(listing:any) {
+  saveListing(listing:any):Observable<any> {
 
 
       const url = environment.mongoUrlLocal + 'business'+ '/add';
@@ -78,7 +78,7 @@ export class BeepService {
       );
   }
 
-  updateListing(listing:any) {
+  updateListing(listing:any):Observable<any> {
 
 
     const url = environment.mongoUrlLocal + 'business'+ '/update/'+this.produsId;

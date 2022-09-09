@@ -61,11 +61,16 @@ export class DetaliiComponent implements OnInit {
   async getDocById(id: any): Promise<void> {
     this.beepService.getDocById(id)
       .subscribe(response => this.listing = response);
+
+
+    let name = this.listing.name ? this.listing.name : null;
+    let ean = this.listing.ean ? this.listing.ean : null;
+    let price = this.listing.price ? this.listing.price : undefined;
       this.listingForm = new FormGroup({
 
-        name: new FormControl(),
-        ean: new FormControl(),
-        price: new FormControl(),
+        name: new FormControl(name),
+        ean: new FormControl(ean),
+        price: new FormControl(price),
 
       });
 
