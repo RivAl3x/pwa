@@ -13,6 +13,7 @@ import {
   providedIn: 'root'
 })
 export class BeepService {
+  produsId: any;
 
   constructor(public http: HttpClient) {
   }
@@ -51,6 +52,7 @@ export class BeepService {
       .pipe(
         map((response: any) => {
           console.warn("Mongo DB by ID:", response)
+          this.produsId = response._id;
           return response;
         }),
 
@@ -77,6 +79,20 @@ export class BeepService {
       );
   }
 
+  updateListing(listing:any, id: any) {
+
+
+    const url = environment.mongoUrlLocal + 'business'+ '/update/'+this.produsId;
+    console.log(url, "URL", "listing:", listing, id, this.produsId)
+    return this.http.post(url, listing)
+    .pipe(
+
+      map((res: any) => {
+        console.log(listing)
+        return res;
+      })
+    );
+}
 
 
 

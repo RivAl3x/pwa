@@ -41,13 +41,17 @@ businessRoutes.route('/edit/:id').get(function (req, res) {
 
 //  Defined update route
 businessRoutes.route('/update/:id').post(function (req, res) {
-    Business.findById(req.params.id, function(err, next, business) {
+    Business.findById(req.params._id, function(err, next, business) {
     if (!business)
       return next(new Error('Could not load Document'));
     else {
-        business.person_name = req.body.person_name;
-        business.business_name = req.body.business_name;
-        business.business_gst_number = req.body.business_gst_number;
+
+      business._id = req.body._id;
+
+
+        business.name = req.body.name;
+        business.ean = req.body.ean;
+        business.price = req.body.price;
 
         business.save().then(business => {
           res.json('Update complete');
