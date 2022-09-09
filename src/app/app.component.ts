@@ -21,6 +21,7 @@ import { EmpFilter } from './model/empfilter';
 import { BrowserAnimationsModule } from
 '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -80,7 +82,9 @@ export class AppComponent implements AfterViewInit {
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
               private updateService: UpdateService,
+
               public dialog: MatDialog
+
             ) {
     this.shoppingCart = new ShoppingCart();
   }
@@ -223,11 +227,10 @@ this.dataSource = new MatTableDataSource(this.catalogue2);
   }
 
   onBarcodeScanned(code: string) {
-
+    console.log("code:", code);
     // ignore duplicates for an interval of 1.5 seconds
     const now = new Date().getTime();
-    if (code === this.lastScannedCode
-      && ((this.lastScannedCodeDate !== undefined) && (now < this.lastScannedCodeDate + 3500))) {
+    if (code === this.lastScannedCode && ((this.lastScannedCodeDate !== undefined) && (now < this.lastScannedCodeDate + 2500))) {
       return;
     }
 

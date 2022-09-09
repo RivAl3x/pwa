@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { BeepService } from '../beep.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,13 +10,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @Component({
   selector: 'app-detalii',
   templateUrl: './detalii.component.html',
   styleUrls: ['./detalii.component.scss']
 })
 export class DetaliiComponent implements OnInit {
+
   // produs: Article = {} as Article;
   produsId: any;
 
@@ -108,16 +110,5 @@ export class DetaliiComponent implements OnInit {
     this.beepService.getDocs();
   }
 
-
-
-  async onUpdateListing(listingForm: any, produsId: any) {
-    // console.log(listingForm, "triims pentru salvare")
-    this.listing = this.listingForm.value;
-    // console.log(this.listing, "this.listing")
-
-    this.beepService.updateListing(this.listing, produsId).
-      subscribe(res => this.listing = res);
-    this.beepService.getDocs();
-  }
 
 }
