@@ -22,13 +22,11 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
-
-import {MatButtonModule} from '@angular/material/button';
 import { DetaliiComponent } from './detalii/detalii.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { DetaliiComponent } from './detalii/detalii.component';
+
 import { MatButton } from '@angular/material/button';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';

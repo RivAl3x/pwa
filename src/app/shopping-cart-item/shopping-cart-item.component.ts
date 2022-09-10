@@ -23,7 +23,7 @@ export class ShoppingCartItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  createBook(eanCode: any){
+  sendEanToSession(eanCode: any){
     // Create Book logic
     this.router.navigate(['/detalii']);
     console.log(eanCode)
