@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { BeepService } from '../beep.service';
@@ -11,6 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import { Location } from "@angular/common";
+import { MatFormFieldModule } from "@angular/material/form-field";
+
+
+
 @Component({
   selector: 'app-detalii',
   templateUrl: './detalii.component.html',
@@ -28,7 +34,9 @@ export class DetaliiComponent implements OnInit {
 
   constructor(public beepService: BeepService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private location: Location
+    ) { }
 
   ngOnInit(): void {
     // this.produsId = this.route.snapshot.paramMap.get('_id');
@@ -42,7 +50,7 @@ export class DetaliiComponent implements OnInit {
 
       console.log("EAN CODE from SESSION:", this.eanCodeSes)
     });
-    // initiaza form
+
     // this.initForm({
     //   name: '',
     //   ean: this.eanCodeSes,
@@ -51,9 +59,20 @@ export class DetaliiComponent implements OnInit {
 
     // console.log(this.listing)
 
+    //pentru afisare in detalii din scanari EAN
+    this.listingForm = new FormGroup({
+      name: new FormControl(),
+      ean: new FormControl(this.eanCodeSes),
+      price: new FormControl(),
+      magazin: new FormControl()
+
+    });
   }
 
 
+  goBack(): void {
+    this.location.back();
+  }
 
 
 
@@ -66,11 +85,13 @@ export class DetaliiComponent implements OnInit {
     let name = this.listing.name ? this.listing.name : null;
     let ean = this.listing.ean ? this.listing.ean : null;
     let price = this.listing.price ? this.listing.price : undefined;
-      this.listingForm = new FormGroup({
+    let magazin = this.listing.magazin ? this.listing.magazin : undefined;
 
+    this.listingForm = new FormGroup({
         name: new FormControl(name),
         ean: new FormControl(ean),
         price: new FormControl(price),
+        magazin: new FormControl(magazin)
 
       });
 
@@ -130,6 +151,7 @@ export class DetaliiComponent implements OnInit {
       });
       console.log("this.listing._id",this.listing._id)
     this.beepService.getDocs();
+
   }
 
   async onUpdateListing(listingForm:any){
@@ -139,7 +161,8 @@ export class DetaliiComponent implements OnInit {
 
     console.log("this.listing onUpdateListing",this.listing)
     this.beepService.getDocById(localStorage.getItem('paramsId')).
-    subscribe(res => this.listing = res);;
+    subscribe(res => this.listing = res);
+
   }
 
 

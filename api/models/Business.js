@@ -14,7 +14,11 @@ let Business = new Schema({
 
   price: {
     type: String
-  }
+  },
+  magazin:{
+    type: String
+  },
+  createdAt:{ type : Date, default: Date.now }
 },{
     collection: 'pwa'
 });

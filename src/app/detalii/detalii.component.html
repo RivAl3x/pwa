@@ -1,30 +1,43 @@
-
 <!-- <ul>
   <li>
     {{ listing.price }}
   </li>
 </ul> -->
 <!-- <form  *ngIf="listing" [formGroup]="listingForm" (ngSubmit)="onSaveListing(listingForm)"> -->
-<form  *ngIf="listing" [formGroup]="listingForm" >
+<form *ngIf="listing" [formGroup]="listingForm">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nume</mat-label>
 
-    <input matInput formControlName="name" placeholder="Nume" value = {{listing.name}} />
+    <input matInput formControlName="name" placeholder="Nume" value={{listing.name}} />
+
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ean</mat-label>
 
-    <input matInput formControlName="ean" placeholder="Ean" value = {{listing.ean}}/>
+    <input matInput formControlName="ean" placeholder="Ean" value={{listing.ean}} />
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Preț</mat-label>
 
-    <input matInput formControlName="price" placeholder="Preț" value = {{listing.price}}/>
+    <input matInput formControlName="price" placeholder="Preț" value={{listing.price}} />
   </mat-form-field>
 
-  <button mat-button type="button" color="warn" (click)="beforeonSaveListing(listingForm, 1)">	<mat-icon>save</mat-icon> Salvează </button>
-  <button mat-button type="button" color="primary" (click)="beforeonSaveListing(listingForm, 2)">	<mat-icon>update</mat-icon> Update </button>
+
+  <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Magazin</mat-label>
+    <input  matInput formControlName="magazin" placeholder="Magazin" value={{listing.magazin}}  />
+  </mat-form-field>
+
+
+
+
+  <button mat-raised-button type="button" color="warn" (click)="beforeonSaveListing(listingForm, 1)" (click)='goBack()'>
+    <mat-icon>save</mat-icon> Salvează
+  </button>
+  <button mat-raised-button type="button" color="primary" style="float:right"       (click)="beforeonSaveListing(listingForm, 2)"  (click)='goBack()' >
+    <mat-icon>update</mat-icon> Update
+  </button>
 
 </form>
 <!-- BUTTON ERA TYPE SUBMIT -->
@@ -37,7 +50,3 @@
   <mat-label>Favorite food</mat-label>
   <input matInput placeholder="Ex. Pizza" value="Sushi">
 </mat-form-field> -->
-
-
-<p>detalii works!</p>
-

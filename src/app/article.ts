@@ -3,4 +3,7 @@ export interface Article {
   name: string;
   ean: string;
   price: number;
+  magazin?:string;
+  createdAt?:any;
+
 }

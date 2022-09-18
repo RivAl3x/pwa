@@ -1,6 +1,8 @@
 {
   "hosting": {
-    "public": "public",
+    "target": "mobile-scanning-demo",
+
+    "public": "docs",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -9,18 +9,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AfisareProduseComponent } from './afisare-produse/afisare-produse.component';
 import { RouterModule } from '@angular/router';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table'
 import { MaterialComponentsModule } from './material-components/material-components.module';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { DetaliiComponent } from './detalii/detalii.component';
 
@@ -28,11 +28,19 @@ import { DetaliiComponent } from './detalii/detalii.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatButton } from '@angular/material/button';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HomeComponent } from './home/home.component';
+import { ScanariComponent } from './scanari/scanari.component';
+import { ProduseComponent } from './produse/produse.component';
+import { BackDirective } from './back.directive';
+import {MatSelectModule} from '@angular/material/select';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +53,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
     DetaliiComponent,
+    HomeComponent,
+    ScanariComponent,
+    ProduseComponent,
+    BackDirective,
 
 
 
@@ -67,8 +79,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatFormFieldModule,
 
     MatButtonModule,
+    MatSelectModule,
 
-
+    MatFormFieldModule,
 
 
 
@@ -77,13 +90,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
     // PWA support
     ServiceWorkerModule.register('ngsw-worker.js'),
-            AppRoutingModule,
-            provideFirebaseApp(() => initializeApp(environment.firebase)),
-            provideAuth(() => getAuth()),
-            provideDatabase(() => getDatabase()),
-            provideFirestore(() => getFirestore()),
-            provideFunctions(() => getFunctions()),
-            BrowserAnimationsModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    BrowserAnimationsModule
   ],
   providers: [
     {
