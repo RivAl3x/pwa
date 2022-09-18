@@ -13,6 +13,23 @@ import {
   providedIn: 'root'
 })
 export class BeepService {
+
+
+  getMagazine(): Observable<any> {
+    const url = environment.mongoUrlLocal + "magazine";
+    return this.http.get<any>(url)
+      .pipe(
+        map((response: any) => {
+
+          return response;
+        }),
+        catchError(errorRes => {
+          return throwError(() => new Error('test'))
+        })
+      );
+  }
+
+
   produsId: any;
 
   constructor(public http: HttpClient) {
@@ -25,9 +42,9 @@ export class BeepService {
     audio.play();
   }
 
-  getDocs():Observable<any>{
+  getDocs(): Observable<any> {
     // const url = environment.mongoUrl;
-    const url = environment.mongoUrlLocal+"business";
+    const url = environment.mongoUrlLocal + "business";
     // console.log(url)
     return this.http.get<any>(url)
       .pipe(
@@ -43,9 +60,9 @@ export class BeepService {
   }
 
 
-  getDocById(id:any):Observable<any>{
+  getDocById(id: any): Observable<any> {
     // const url = environment.mongoUrl;
-    const url = environment.mongoUrlLocal+"business"+"/edit/"+id;
+    const url = environment.mongoUrlLocal + "business" + "/edit/" + id;
 
     return this.http.get<any>(url)
       .pipe(
@@ -63,12 +80,13 @@ export class BeepService {
   }
 
 
-  saveListing(listing:any):Observable<any> {
+  saveListing(listing: any): Observable<any> {
 
-
-      const url = environment.mongoUrlLocal + 'business'+ '/add';
-      // console.log(url, "URL", "listing:", listing)
-      return this.http.post('http://localhost:4000/business/add', listing)
+    listing.magazin = localStorage.getItem('magazin')
+console.log(listing)
+    const url = environment.mongoUrlLocal + 'business' + '/add';
+    // console.log(url, "URL", "listing:", listing)
+    return this.http.post('http://localhost:4000/business/add', listing)
       .pipe(
 
         map((res: any) => {
@@ -78,24 +96,24 @@ export class BeepService {
       );
   }
 
-  updateListing(listing:any):Observable<any> {
+  updateListing(listing: any): Observable<any> {
 
 
-    const url = environment.mongoUrlLocal + 'business'+ '/update/'+this.produsId;
+    const url = environment.mongoUrlLocal + 'business' + '/update/' + this.produsId;
     console.log("listing.value", listing)
     // console.log("id", id)
     console.log("this.produsId", this.produsId)
-    return this.http.put(url,  listing)
-    .pipe(
-      map((res: any) => {
-        console.log("res:", res)
-        return res;
-      }),
-      catchError(errorRes => {
-        return throwError(() => new Error('test'))
-      })
-    );
-}
+    return this.http.put(url, listing)
+      .pipe(
+        map((res: any) => {
+          console.log("res:", res)
+          return res;
+        }),
+        catchError(errorRes => {
+          return throwError(() => new Error('test'))
+        })
+      );
+  }
 
 
 

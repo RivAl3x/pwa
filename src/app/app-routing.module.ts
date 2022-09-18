@@ -6,17 +6,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AfisareProduseComponent } from './afisare-produse/afisare-produse.component';
 import { ShoppingCart } from './shopping-cart';
 import { DetaliiComponent } from './detalii/detalii.component';
+import { HomeComponent } from './home/home.component';
+import { ScanariComponent } from './scanari/scanari.component';
+import { ProduseComponent } from './produse/produse.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'AppComponent', pathMatch: 'full' },
-  { path: 'produse', component: AfisareProduseComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cart', component: ShoppingCart },
-
   { path: 'detalii', component: DetaliiComponent },
   { path: 'detalii/:_id', component: DetaliiComponent },
-
-  { path: 'detalii', component: DetaliiComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'scanari', component: ScanariComponent },
+  { path: 'produse', component: ProduseComponent }
 
 ];
 
