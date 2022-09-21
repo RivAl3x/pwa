@@ -21,22 +21,22 @@
   </mat-form-field>
 
 
-
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" >
 
   <button mat-raised-button type="button" color="warn" (click)="beforeonSaveListing(listingForm, 1)" (click)='goBack()'>
     <mat-icon>save</mat-icon> Salvează
   </button>
 
-  <!-- <button mat-raised-button type="button" (click)='deleteProduct()' (click)="openDialog('0ms', '0ms')">
+  <button mat-raised-button type="button"  (click)="openDialog('0ms', '0ms')">
     <mat-icon>delete_forever</mat-icon>
-  </button> -->
+  </button>
 
   <button [disabled]="justSaveBtn" mat-raised-button type="button" color="primary" style="float:right"
     (click)="beforeonSaveListing(listingForm, 2)" (click)='goBack()'>
     <mat-icon>update</mat-icon> Update
   </button>
 
-
+  </div>
 
 
 

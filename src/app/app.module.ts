@@ -39,6 +39,7 @@ import { ProduseComponent } from './produse/produse.component';
 import { BackDirective } from './back.directive';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { DialogConfirmareComponent } from './dialog-confirmare/dialog-confirmare.component';
 
 
 
@@ -58,6 +59,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ScanariComponent,
     ProduseComponent,
     BackDirective,
+    DialogConfirmareComponent,
 
 
 
