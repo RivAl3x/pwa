@@ -7,17 +7,9 @@ import { ShoppingCart } from '../shopping-cart';
 import { UpdateService } from '../update.service';
 import { environment } from '../../environments/environment';
 import { getMainBarcodeScanningCamera } from '../camera-access';
-
-
 import {MatTableDataSource, MatTableModule} from '@angular/material/table'
-
-
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-
-
-
 import {MatPaginator} from '@angular/material/paginator';
-
 
 
 @Component({
@@ -39,6 +31,9 @@ export class ScanariComponent implements AfterViewInit {
 
 
   dataSource = new MatTableDataSource(this.catalogue2);
+
+
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -82,6 +77,8 @@ export class ScanariComponent implements AfterViewInit {
 this.dataSource = new MatTableDataSource(this.catalogue2);
      this.dataSource.paginator = this.paginator;
      console.log(this.paginator)
+
+
   }
 
 
@@ -250,7 +247,7 @@ this.dataSource = new MatTableDataSource(this.catalogue2);
     }
 
     return {
-      ean: "Cod ean :"+ code,
+      ean:code,
       // name: `Codul: ${code}`,
       name: "Produs nou",
       // image: 'assets/classy_crab_unknown.png',

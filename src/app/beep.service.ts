@@ -43,13 +43,26 @@ export class BeepService {
   }
 
   getDocs(): Observable<any> {
-    // const url = environment.mongoUrl;
     const url = environment.mongoUrlLocal + "business";
-    // console.log(url)
-    return this.http.get<any>(url)
+
+
+    let params = new HttpParams();
+
+    var magazin = localStorage.getItem('magazin') as string;
+    if(magazin == "ambele"){
+      params = params;
+    } else{
+      params = params.append('magazin', magazin );
+    }
+
+
+    console.log(params.toString())
+
+
+
+    return this.http.get<any>(url, { params })
       .pipe(
         map((response: any) => {
-          // console.warn("Mongo DB:", response)
           return response;
         }),
 
@@ -83,7 +96,7 @@ export class BeepService {
   saveListing(listing: any): Observable<any> {
 
     listing.magazin = localStorage.getItem('magazin')
-console.log(listing)
+    console.log(listing)
     const url = environment.mongoUrlLocal + 'business' + '/add';
     // console.log(url, "URL", "listing:", listing)
     return this.http.post('http://localhost:4000/business/add', listing)
@@ -116,7 +129,19 @@ console.log(listing)
   }
 
 
+  deleteListing(): Observable<any> {
 
+    const url = environment.mongoUrlLocal + 'business' + '/delete/' + this.produsId;
+    // console.log(url, "URL", "listing:", listing)
+    return this.http.delete(url, this.produsId)
+      .pipe(
+
+        map((res: any) => {
+          console.log("STERS")
+          return res;
+        })
+      );
+  }
 
 
 

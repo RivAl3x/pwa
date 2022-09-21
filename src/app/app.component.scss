@@ -81,6 +81,8 @@ mat-tab-label{
 }
 mat-card{
   background-color: rgb(88, 99, 96);
+  margin-right: 1px;
+  margin-left: 1px;
 }
 
 .mat-tab-label .mat-tab-label-content{
@@ -125,3 +127,9 @@ mat-card{
 // .mat-form-field-label-wrapper{
 //   padding:0px
 // }
+
+
+.mat-toolbar-single-row{
+  margin-right: 21px;
+  margin-left: 1px;
+}

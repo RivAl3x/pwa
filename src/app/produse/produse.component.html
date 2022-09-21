@@ -7,12 +7,13 @@
     <mat-icon class="example-tab-icon">store</mat-icon>
     Produse
   </ng-template>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  >
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  fxFlex="100"
+  fxFlexFill >
 
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element">
+    <ng-container matColumnDef="name" >
+      <th mat-header-cell *matHeaderCellDef class="width-textArea"> Name </th>
+      <td mat-cell *matCellDef="let element " class="width-textArea">
 
         <a fxFlexFill [routerLink]="'/detalii/'+element._id" class="mat-row-link"> {{element.name}}</a>
       </td>
@@ -20,16 +21,16 @@
 
 
     <ng-container matColumnDef="ean">
-      <th mat-header-cell *matHeaderCellDef> Ean </th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="width-textArea"> Ean </th>
+      <td mat-cell *matCellDef="let element" class="width-textArea">
 
         <a fxFlexFill [routerLink]="'/detalii/'+element._id" class="mat-row-link"> {{element.ean}}</a> </td>
     </ng-container>
 
 
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Price </th>
-      <td mat-cell *matCellDef="let element">
+    <ng-container matColumnDef="price" >
+      <th mat-header-cell *matHeaderCellDef class="width-textArea"> Price </th>
+      <td mat-cell *matCellDef="let element" class="width-textArea">
 
         <a fxFlexFill [routerLink]="'/detalii/'+element._id" class="mat-row-link">       {{element.price}}</a>
       </td>
@@ -37,7 +38,7 @@
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [routerLink]="['/detalii/', row._id]"></tr>>
   </table>
   <!-- <mat-paginator #paginator [pageSizeOptions]="[2, 4, 6]"
   showFirstLastButtons></mat-paginator> -->

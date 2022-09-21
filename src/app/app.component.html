@@ -1,15 +1,23 @@
-<div fxLayout="column" fxLayoutAlign="start start" fxFill>
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="'/home/'">
+   <mat-icon>home</mat-icon>
+ </button>
+</mat-toolbar>
+
+
+
+
+
+<div fxLayout="column"  fxFlexFill>
 
   <div fxLayout="row" fxLayoutAlign="space-evenly stretch" >
-<button mat-raised-button type="button" color="warn" [routerLink]="'/home/'" id="homeBtn" style="float: left;">
-  <mat-icon>home</mat-icon> Home
-</button>
+
 
 
 <!-- <mat-form-field appearance="standard"  >-->
   <!-- <mat-label>Magazin <mat-icon>store</mat-icon></mat-label> -->
   <mat-select (valueChange)="sendStoreToSession($event)">
-
+<mat-option [value]="'ambele'">Ambele</mat-option>
     <mat-option *ngFor="let item of magazine"    [value]="item.name">
       {{item.name}}
     </mat-option>

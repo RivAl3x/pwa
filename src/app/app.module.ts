@@ -21,7 +21,7 @@ import { MaterialComponentsModule } from './material-components/material-compone
 import { MatIconModule } from '@angular/material/icon';
 
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+
 import { DetaliiComponent } from './detalii/detalii.component';
 
 
@@ -38,6 +38,8 @@ import { ScanariComponent } from './scanari/scanari.component';
 import { ProduseComponent } from './produse/produse.component';
 import { BackDirective } from './back.directive';
 import {MatSelectModule} from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { DialogConfirmareComponent } from './dialog-confirmare/dialog-confirmare.component';
 
 
 
@@ -47,7 +49,7 @@ import {MatSelectModule} from '@angular/material/select';
     ShoppingCartItemComponent,
     AfisareProduseComponent,
 
-    DialogComponent,
+
     DetaliiComponent,
 
 
@@ -57,6 +59,8 @@ import {MatSelectModule} from '@angular/material/select';
     ScanariComponent,
     ProduseComponent,
     BackDirective,
+    DialogConfirmareComponent,
+
 
 
 
@@ -82,7 +86,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
 
     MatFormFieldModule,
-
+    MatToolbarModule,
 
 
 

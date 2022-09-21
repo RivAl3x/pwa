@@ -29,5 +29,8 @@ export class ShoppingCartItemComponent implements OnInit {
     console.log(eanCode)
     localStorage.setItem('eanCode', eanCode);
 
+    let justSaveBtn ='justSaveBtn' ;
+    sessionStorage.setItem('justSaveBtn', justSaveBtn);
+
  }
 }
