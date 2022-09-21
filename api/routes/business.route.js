@@ -21,7 +21,8 @@ businessRoutes.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 businessRoutes.route('/').get(function (req, res) {
-    Business.find(function (err, businesses){
+  console.log( req.params, req.query)
+    Business.find(req.query, function (err, businesses){
     if(err){
       console.log(err);
     }
@@ -80,7 +81,7 @@ businessRoutes.route('/update/:id').put((req, res, next) => {
 
 
 // Defined delete | remove | destroy route
-businessRoutes.route('/delete/:id').get(function (req, res) {
+businessRoutes.route('/delete/:id').delete(function (req, res) {
     Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
         if(err) res.json(err);
         else res.json('Successfully removed');

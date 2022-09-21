@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+ }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #586360;}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:host {
+  min-height: 100%;
+  display: flex;
+}
+
+

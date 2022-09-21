@@ -21,8 +21,8 @@ app.use(cors());
 app.use('/business', businessRoute);
 app.use('/magazine', magazineRoute);
 // const port = process.env.PORT || 4000;
-const PORT1 = 'http://192.168.100.47:4000'
-const port = PORT1 || 4000;
+// const PORT1 = 'http://192.168.100.47:4000'
+const port = process.env.PORT || 4000;
 const server = app.listen(port, function(){
   console.log('Listening on port ' + port);
 });

@@ -6,6 +6,8 @@ import { BeepService } from '../beep.service';
 import { ShoppingCart } from '../shopping-cart';
 import { UpdateService } from '../update.service';
 
+
+
 @Component({
   selector: 'app-produse',
   templateUrl: './produse.component.html',

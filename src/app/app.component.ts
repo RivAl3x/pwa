@@ -31,8 +31,8 @@ import { BeepService } from './beep.service';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
 
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatSelectModule } from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
 export class AppComponent implements OnInit {
 
 
-  magazine: any ;
+  magazine: any;
 
 
 
@@ -63,20 +63,22 @@ export class AppComponent implements OnInit {
   }
   getMagazine() {
     this.beepService
-    .getMagazine()
-    .subscribe((data) => {
-console.log(data)
-      this.magazine = data;
+      .getMagazine()
+      .subscribe((data) => {
+        console.log(data)
+        this.magazine = data;
 
-    })
+      })
   }
 
 
-  sendStoreToSession(magazin:string) {
+  sendStoreToSession(magazin: string) {
+    // if (magazin == "ambele") {
+    //   localStorage.removeItem('magazin')
+    // }
 
-
- localStorage.setItem('magazin', magazin)
- var selectedMagazin =  localStorage.getItem('magazin')
+    localStorage.setItem('magazin', magazin)
+    var selectedMagazin = localStorage.getItem('magazin')
     console.log(selectedMagazin);
 
   }

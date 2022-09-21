@@ -14,6 +14,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { Location } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -30,7 +31,9 @@ export class DetaliiComponent implements OnInit {
   listingForm: FormGroup;
   listing: Article = {} as Article;
   eanCodeSes: any;
-
+  justSaveBtn:any;
+  justUpdateBtn:any;
+  public dialog: MatDialog;
 
   constructor(public beepService: BeepService,
     private router: Router,
@@ -67,11 +70,28 @@ export class DetaliiComponent implements OnInit {
       magazin: new FormControl()
 
     });
+
+    this.justSaveBtn = sessionStorage.getItem('justSaveBtn');
   }
+  // openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  //   this.dialog.open(DialogAnimationsExampleDialog, {
+  //     width: '250px',
+  //     enterAnimationDuration,
+  //     exitAnimationDuration,
+  //   });
+  // }
+
+
+
+  deleteProduct() {
+    this.beepService.deleteListing().subscribe(res => {
+      console.log('Deleted')})
+    }
 
 
   goBack(): void {
     this.location.back();
+    sessionStorage.removeItem('justSaveBtn');
   }
 
 
@@ -151,7 +171,7 @@ export class DetaliiComponent implements OnInit {
       });
       console.log("this.listing._id",this.listing._id)
     this.beepService.getDocs();
-
+    sessionStorage.removeItem('justSaveBtn');
   }
 
   async onUpdateListing(listingForm:any){
@@ -162,7 +182,12 @@ export class DetaliiComponent implements OnInit {
     console.log("this.listing onUpdateListing",this.listing)
     this.beepService.getDocById(localStorage.getItem('paramsId')).
     subscribe(res => this.listing = res);
+    sessionStorage.removeItem('justSaveBtn');
+  }
 
+  ngOnDestroy(): void{
+    console.log('on distroy')
+    sessionStorage.removeItem('justSaveBtn')
   }
 
 
